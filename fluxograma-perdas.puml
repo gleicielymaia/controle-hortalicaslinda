@@ -1,21 +1,26 @@
-@startuml fluxograma_perdas
+@startuml
+left to right direction
 
-start
+actor "Usuário" as Usuario
 
-:Selecionar hortaliça;
+rectangle "Registro de Perdas" {
 
-:Informar quantidade perdida;
+    usecase "Registrar perda" as Registrar
+    usecase "Informar produto" as Produto
+    usecase "Informar quantidade" as Quantidade
+    usecase "Informar motivo da perda" as Motivo
+    usecase "Informar data da perda" as Data
+    usecase "Salvar registro" as Salvar
+    usecase "Consultar perdas registradas" as Consultar
+}
 
-:Informar motivo da perda;
+Usuario --> Registrar
+Usuario --> Consultar
 
-:Calcular prejuízo;
-
-:Registrar perda;
-
-:Atualizar estoque automaticamente;
-
-:Exibir confirmação do registro;
-
-stop
+Registrar .> Produto : <<include>>
+Registrar .> Quantidade : <<include>>
+Registrar .> Motivo : <<include>>
+Registrar .> Data : <<include>>
+Registrar .> Salvar : <<include>>
 
 @enduml
