@@ -1,0 +1,23 @@
+@startuml
+title Fluxograma - Cadastro de Colheita Diária
+
+start
+
+:Produtor informa o nome da hortaliça;
+:Informa a quantidade colhida;
+:Informa os dados da colheita;
+
+:Sistema valida os dados;
+
+if (Dados estão corretos?) then (Sim)
+    :Registrar a colheita;
+    :Atualizar quantidade disponível no estoque;
+    :Exibir confirmação do cadastro;
+else (Não)
+    :Exibir mensagem de erro;
+    :Solicitar correção dos dados;
+endif
+
+stop
+
+@enduml
