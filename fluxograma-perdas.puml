@@ -1,0 +1,21 @@
+@startuml fluxograma_perdas
+
+start
+
+:Selecionar hortaliça;
+
+:Informar quantidade perdida;
+
+:Informar motivo da perda;
+
+:Calcular prejuízo;
+
+:Registrar perda;
+
+:Atualizar estoque automaticamente;
+
+:Exibir confirmação do registro;
+
+stop
+
+@enduml
