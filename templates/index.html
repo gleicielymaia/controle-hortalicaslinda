@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro de Colheita</title>
+</head>
+
+<body>
+
+    <h1>Cadastro de Colheita</h1>
+
+    <p>Cadastre a colheita diária para controlar os produtos disponíveis em estoque.</p>
+
+    <form action="/cadastrar-colheita" method="POST">
+
+        <label for="hortalica">Nome da hortaliça:</label>
+        <input type="text" id="hortalica" name="hortalica"
+               placeholder="Ex: Alface" required>
+
+        <br><br>
+
+        <label for="quantidade">Quantidade colhida:</label>
+        <input type="number" id="quantidade" name="quantidade"
+               min="1" placeholder="Ex: 20" required>
+
+        <br><br>
+
+        <label for="data">Data da colheita:</label>
+        <input type="date" id="data" name="data" required>
+
+        <br><br>
+
+        <button type="submit">Cadastrar Colheita</button>
+
+    </form>
+
+</body>
+</html> 
