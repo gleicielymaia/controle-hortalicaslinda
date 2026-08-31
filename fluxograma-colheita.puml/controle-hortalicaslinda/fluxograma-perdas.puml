@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+
+actor "Usuário" as Usuario
+
+rectangle "Registro de Perdas" {
+
+    usecase "Registrar perda" as Registrar
+    usecase "Informar produto" as Produto
+    usecase "Informar quantidade" as Quantidade
+    usecase "Informar motivo da perda" as Motivo
+    usecase "Informar data da perda" as Data
+    usecase "Salvar registro" as Salvar
+    usecase "Consultar perdas registradas" as Consultar
+}
+
+Usuario --> Registrar
+Usuario --> Consultar
+
+Registrar .> Produto : <<include>>
+Registrar .> Quantidade : <<include>>
+Registrar .> Motivo : <<include>>
+Registrar .> Data : <<include>>
+Registrar .> Salvar : <<include>>
+
+@enduml
