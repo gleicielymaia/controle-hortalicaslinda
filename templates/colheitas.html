@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Colheitas Cadastradas</title>
+</head>
+
+<body>
+
+    <h1>Colheitas Cadastradas</h1>
+
+    <p>Confira as colheitas registradas no sistema.</p>
+
+    {% if colheitas %}
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Hortaliça</th>
+                <th>Quantidade</th>
+                <th>Data da Colheita</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for colheita in colheitas %}
+
+            <tr>
+                <td>{{ colheita.hortalica }}</td>
+                <td>{{ colheita.quantidade }}</td>
+                <td>{{ colheita.data }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    {% else %}
+
+    <p>Nenhuma colheita cadastrada.</p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/">Cadastrar nova colheita</a>
+
+</body>
+
+</html>
