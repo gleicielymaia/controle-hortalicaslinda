@@ -13,7 +13,8 @@
 
     <p>Registre as perdas ocorridas na produção.</p>
 
-    <form>
+    <form method="POST" action="/">
+
         <label for="produto">Produto:</label>
         <input type="text" id="produto" name="produto" required>
 
@@ -30,11 +31,39 @@
         <br><br>
 
         <label for="motivo">Motivo da perda:</label>
-<input type="text" id="motivo" name="motivo" required>
+        <input type="text" id="motivo" name="motivo" required>
+
         <br><br>
 
         <button type="submit">Registrar perda</button>
+
     </form>
+
+    <hr>
+
+    <h2>Perdas registradas</h2>
+
+    {% if perdas %}
+
+        {% for perda in perdas %}
+
+            <p>
+                <strong>Produto:</strong> {{ perda.produto }}<br>
+                <strong>Quantidade:</strong> {{ perda.quantidade }}<br>
+                <strong>Data:</strong> {{ perda.data }}<br>
+                <strong>Motivo:</strong> {{ perda.motivo }}
+            </p>
+
+            <hr>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>Nenhuma perda registrada ainda.</p>
+
+    {% endif %}
 
 </body>
 </html>
+
