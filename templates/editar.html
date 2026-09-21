@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Perda</title>
+</head>
+
+<body>
+
+    <h1>Editar Perda</h1>
+
+    <form method="POST">
+
+        <label>Produto:</label>
+        <input type="text" name="produto" value="{{ perda.produto }}" required>
+        <br><br>
+
+        <label>Quantidade perdida:</label>
+        <input type="number" name="quantidade" value="{{ perda.quantidade }}" required>
+        <br><br>
+
+        <label>Data da perda:</label>
+        <input type="date" name="data" value="{{ perda.data }}" required>
+        <br><br>
+
+        <label>Motivo da perda:</label>
+        <input type="text" name="motivo" value="{{ perda.motivo }}" required>
+        <br><br>
+
+        <button type="submit">Salvar alteração</button>
+
+    </form>
+
+    <br>
+
+    <a href="{{ url_for('listar_perdas') }}">
+        <button type="button">Voltar</button>
+    </a>
+
+</body>
+
+</html>

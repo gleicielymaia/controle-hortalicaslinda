@@ -1,69 +1,76 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Perdas</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <h1>Registro de Perdas</h1>
+    <div class="container">
 
-    <p>Registre as perdas ocorridas na produção.</p>
+        <h1>Registro de Perdas</h1>
 
-    <form method="POST" action="/">
+        <p>Registre as perdas ocorridas na produção.</p>
 
-        <label for="produto">Produto:</label>
-        <input type="text" id="produto" name="produto" required>
+        <form method="POST">
 
-        <br><br>
+            <label>Produto:</label>
+            <input type="text" name="produto" required>
 
-        <label for="quantidade">Quantidade perdida:</label>
-        <input type="number" id="quantidade" name="quantidade" min="1" required>
+            <label>Quantidade perdida:</label>
+            <input type="number" name="quantidade" required>
 
-        <br><br>
+            <label>Data da perda:</label>
+            <input type="date" name="data" required>
 
-        <label for="data">Data da perda:</label>
-        <input type="date" id="data" name="data" required>
+            <label>Motivo da perda:</label>
+            <input type="text" name="motivo" required>
 
-        <br><br>
+            <button type="submit">Registrar perda</button>
 
-        <label for="motivo">Motivo da perda:</label>
-        <input type="text" id="motivo" name="motivo" required>
+        </form>
 
-        <br><br>
+        <hr>
 
-        <button type="submit">Registrar perda</button>
+        <h2>Perdas registradas</h2>
 
-    </form>
+        {% if perdas %}
 
-    <hr>
+            {% for perda in perdas %}
 
-    <h2>Perdas registradas</h2>
+                <div class="perda">
 
-    {% if perdas %}
+                    <p>
+                        <strong>Produto:</strong> {{ perda["produto"] }}<br>
+                        <strong>Quantidade:</strong> {{ perda["quantidade"] }}<br>
+                        <strong>Data:</strong> {{ perda["data"] }}<br>
+                        <strong>Motivo:</strong> {{ perda["motivo"] }}
+                    </p>
 
-        {% for perda in perdas %}
+                    <a href="{{ url_for('editar_perda', id=perda['id']) }}">
+                        <button type="button">✏️ Editar</button>
+                    </a>
 
-            <p>
-                <strong>Produto:</strong> {{ perda.produto }}<br>
-                <strong>Quantidade:</strong> {{ perda.quantidade }}<br>
-                <strong>Data:</strong> {{ perda.data }}<br>
-                <strong>Motivo:</strong> {{ perda.motivo }}
-            </p>
+                    <a href="{{ url_for('excluir_perda', id=perda['id']) }}">
+                        <button type="button">🗑️ Excluir</button>
+                    </a>
 
-            <hr>
+                </div>
 
-        {% endfor %}
+            {% endfor %}
 
-    {% else %}
+        {% else %}
 
-        <p>Nenhuma perda registrada ainda.</p>
+            <p>Nenhuma perda registrada ainda.</p>
 
-    {% endif %}
+        {% endif %}
+
+    </div>
 
 </body>
-</html>
 
+</html>
