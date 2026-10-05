@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Registro de Perdas</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -10,67 +11,135 @@
 
 <body>
 
-    <div class="container">
+    <header>
+        <div class="perfil">
+            <img src="{{ url_for('static', filename='img/perfil.png') }}" 
+                 alt="Foto de perfil">
+        </div>
 
-        <h1>Registro de Perdas</h1>
+        <div>
+            <h1>🥬 Registro de Perdas</h1>
+            <p>Controle de perdas na produção de hortaliças</p>
+        </div>
+    </header>
 
-        <p>Registre as perdas ocorridas na produção.</p>
+    <main>
 
-        <form method="POST">
+        <section class="card">
 
-            <label>Produto:</label>
-            <input type="text" name="produto" required>
+            <h2>Registrar nova perda</h2>
 
-            <label>Quantidade perdida:</label>
-            <input type="number" name="quantidade" required>
+            <form method="POST" action="/">
 
-            <label>Data da perda:</label>
-            <input type="date" name="data" required>
+                <label for="produto">Produto:</label>
+                <input 
+                    type="text" 
+                    id="produto" 
+                    name="produto"
+                    placeholder="Ex: Alface"
+                    required
+                >
 
-            <label>Motivo da perda:</label>
-            <input type="text" name="motivo" required>
+                <label for="quantidade">Quantidade perdida:</label>
+                <input 
+                    type="number" 
+                    id="quantidade" 
+                    name="quantidade"
+                    min="1"
+                    placeholder="Ex: 5"
+                    required
+                >
 
-            <button type="submit">Registrar perda</button>
+                <label for="data">Data da perda:</label>
+                <input 
+                    type="date" 
+                    id="data" 
+                    name="data"
+                    required
+                >
 
-        </form>
+                <label for="motivo">Motivo da perda:</label>
+                <input 
+                    type="text" 
+                    id="motivo" 
+                    name="motivo"
+                    placeholder="Ex: Folhas danificadas"
+                    required
+                >
 
-        <hr>
+                <button type="submit">
+                    Registrar perda
+                </button>
 
-        <h2>Perdas registradas</h2>
+            </form>
 
-        {% if perdas %}
+        </section>
 
-            {% for perda in perdas %}
 
-                <div class="perda">
+        <section class="card">
 
-                    <p>
-                        <strong>Produto:</strong> {{ perda["produto"] }}<br>
-                        <strong>Quantidade:</strong> {{ perda["quantidade"] }}<br>
-                        <strong>Data:</strong> {{ perda["data"] }}<br>
-                        <strong>Motivo:</strong> {{ perda["motivo"] }}
-                    </p>
+            <h2>📋 Perdas registradas</h2>
 
-                    <a href="{{ url_for('editar_perda', id=perda['id']) }}">
-                        <button type="button">✏️ Editar</button>
-                    </a>
+            {% if perdas %}
 
-                    <a href="{{ url_for('excluir_perda', id=perda['id']) }}">
-                        <button type="button">🗑️ Excluir</button>
-                    </a>
+                <div class="lista-perdas">
+
+                    {% for perda in perdas %}
+
+                        <div class="perda">
+
+                            <h3>{{ perda.produto }}</h3>
+
+                            <p>
+                                <strong>Quantidade:</strong>
+                                {{ perda.quantidade }}
+                            </p>
+
+                            <p>
+                                <strong>Data:</strong>
+                                {{ perda.data }}
+                            </p>
+
+                            <p>
+                                <strong>Motivo:</strong>
+                                {{ perda.motivo }}
+                            </p>
+
+                            <div class="acoes">
+
+                                <a href="/editar/{{ loop.index0 }}" class="btn-editar">
+                                    ✏️ Editar
+                                </a>
+
+                                <a href="/excluir/{{ loop.index0 }}"
+                                   class="btn-excluir"
+                                   onclick="return confirm('Tem certeza que deseja excluir esta perda?')">
+                                    🗑️ Excluir
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
 
                 </div>
 
-            {% endfor %}
+            {% else %}
 
-        {% else %}
+                <div class="vazio">
+                    <p>🌱 Nenhuma perda registrada ainda.</p>
+                </div>
 
-            <p>Nenhuma perda registrada ainda.</p>
+            {% endif %}
 
-        {% endif %}
+        </section>
 
-    </div>
+    </main>
+
+    <footer>
+        <p>Controle de Hortaliças 🥬 | Projeto Técnico em Informática</p>
+    </footer>
 
 </body>
-
 </html>
